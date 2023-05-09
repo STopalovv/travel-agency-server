@@ -8,17 +8,17 @@ const Sidebar = () => {
       <ul>
         <li>
           <NavLink exact to="/" activeClassName="active">
-            Home
+            Начало
           </NavLink>
         </li>
         <li>
           <NavLink to="/packs" activeClassName="active">
-            Packs
+            Пакети
           </NavLink>
         </li>
         <li>
           <NavLink to="/news" activeClassName="active">
-            News
+            Новини
           </NavLink>
         </li>
       </ul>

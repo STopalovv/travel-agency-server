@@ -44,6 +44,8 @@ import Sidebar from '../components/Sidebar';
   const Button = styled.button`
 display: inline-block;
 background-color: #4caf50;
+margin-right: 15px;
+margin-bottom: 15px;
 color: white;
 padding: 10px 20px;
 border: none;
@@ -169,8 +171,6 @@ function News() {
         const handleEditClick = async (id) => {
           try{
             const response = await fetch(`http://localhost:4000/news/${id}`)
-            console.log(id);
-            console.log(typeof(id));
             const data = await response.json()
             setEditTitle(data.title)
             setEditImage(data.image)
@@ -211,7 +211,7 @@ function News() {
   return (
     <div>
         <Sidebar />
-        <Button onClick={handleCreateClick}>Create +</Button>
+        <Button onClick={handleCreateClick}>Добави +</Button>
         {showForm && (
         <Overlay onClick={handleFormCancel}>
           <Dialog onClick={(event) => event.stopPropagation()}>
@@ -219,18 +219,18 @@ function News() {
               <Input
                 type="text"
                 required
-                placeholder='Title'
+                placeholder='Заглавие'
                 onChange={(event) => setTitle(event.target.value)}
               />
               <Input
                 type="text"
                 required
-                placeholder='Image'
+                placeholder='Снимка'
                 onChange={(event) => setImage(event.target.value)}
               />
-              <FormButton type="submit">Add</FormButton>
+              <FormButton type="submit">Добави</FormButton>
               <FormButton type="button" onClick={handleFormCancel}>
-                Cancel
+                Откажи
               </FormButton>
             </Form>
           </Dialog>
@@ -246,8 +246,8 @@ function News() {
         <ProductInfo>
             <Price>{item.createdAt}</Price>
         </ProductInfo>
-        <Button onClick={() => handleEditClick(item._id)}>Edit</Button>
-        <Button onClick={() => handleDelete(item._id)}>Delete</Button>
+        <Button onClick={() => handleEditClick(item._id)}>Актуализация</Button>
+        <Button onClick={() => handleDelete(item._id)}>Изтриване</Button>
         {editForm && (
         <Overlay onClick={handleFormCancel}>
           <Dialog onClick={(event) => event.stopPropagation()}>
@@ -264,9 +264,9 @@ function News() {
                 placeholder='Image'
                 onChange={(event) => setImage(event.target.value)}
               />
-              <FormButton type="submit">Edit</FormButton>
+              <FormButton type="submit">Актуализация</FormButton>
               <FormButton type="button" onClick={handleFormCancel}>
-                Cancel
+                Откажи
               </FormButton>
             </Form>
           </Dialog>

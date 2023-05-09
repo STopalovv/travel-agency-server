@@ -110,7 +110,6 @@ function Packs() {
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const [stayingPlace, setStayingPlace] = useState('')
-    const [activities, setActivities] = useState([])
     const [numberOfPacks, setnumberOfPacks] = useState(0)
 
     const [editForm, setEditForm] = useState(false);
@@ -121,7 +120,6 @@ function Packs() {
     const [editStartDate, setEditStartDate] = useState('')
     const [editEndDate, setEditEndDate] = useState('')
     const [editStayingPlace, setEditStayingPlace] = useState('')
-    const [editActivities, setEditActivities] = useState([])
     const [editNumberOfPacks, setEditnumberOfPacks] = useState(0)
 
     useEffect(() => {
@@ -149,7 +147,7 @@ function Packs() {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ image: image, destination: destination, start: start, price: price, startDate: startDate, endDate: endDate, stayingPlace: stayingPlace, activities: activities, numberOfPacks: numberOfPacks }) // Send the data as a JSON object in the request body
+            body: JSON.stringify({ image: image, destination: destination, start: start, price: price, startDate: startDate, endDate: endDate, stayingPlace: stayingPlace, numberOfPacks: numberOfPacks }) // Send the data as a JSON object in the request body
           });
     
           if (!response.ok) {
@@ -208,7 +206,7 @@ function Packs() {
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ image: image, destination: destination, start: start, price: price, startDate: startDate, endDate: endDate, stayingPlace: stayingPlace, activities: activities, numberOfPacks: numberOfPacks })
+            body: JSON.stringify({ image: image, destination: destination, start: start, price: price, startDate: startDate, endDate: endDate, stayingPlace: stayingPlace, numberOfPacks: numberOfPacks })
           });
       
           if (!response.ok) {
@@ -230,7 +228,7 @@ return (
 <div>
     <Sidebar />
     <div>
-      <Button onClick={handleCreateClick}>Create +</Button>
+      <Button onClick={handleCreateClick}>Добави +</Button>
       {showForm && (
         <Overlay onClick={handleFormCancel}>
           <Dialog onClick={(event) => event.stopPropagation()}>
@@ -238,25 +236,25 @@ return (
               <Input
                 type="text"
                 required
-                placeholder='Destination'
+                placeholder='Дестинация'
                 onChange={(event) => setDestination(event.target.value)}
               />
               <Input
                 type="text"
                 required
-                placeholder='Image'
+                placeholder='Снимка'
                 onChange={(event) => setImage(event.target.value)}
               />
               <Input
                 type="text"
                 required
-                placeholder='Start'
+                placeholder='Тръгване от'
                 onChange={(event) => setStart(event.target.value)}
               />
               <Input
                 type="number"
                 required
-                placeholder='Price'
+                placeholder='Цена'
                 onChange={(event) => setPrice(event.target.value)}
               />
               <Input
@@ -280,12 +278,12 @@ return (
               <Input
                 type="number"
                 required
-                placeholder='Number of packs'
+                placeholder='Брой пакети'
                 onChange={(event) => setnumberOfPacks(event.target.value)}
               />
               <FormButton type="submit">Add</FormButton>
               <FormButton type="button" onClick={handleFormCancel}>
-                Cancel
+                Откажи
               </FormButton>
             </Form>
           </Dialog>
@@ -300,12 +298,12 @@ return (
         <div style={{marginLeft: "5vw"}}>
             <p>{item.destination}</p>
     <ProductInfo>
-        <Price>Packs left: {item.numberOfPacks}</Price>
+        <Price>Оставащи пакети: {item.numberOfPacks}</Price>
     </ProductInfo>
         </div>
         <div>
-            <Button style={{marginRight: "15px"}} onClick={() => handleEditClick(item._id)}>Edit</Button>
-            <Button style={{marginRight: "15px"}} onClick={() => handleDelete(item._id)}>Delete</Button>
+            <Button style={{marginRight: "15px"}} onClick={() => handleEditClick(item._id)}>Актуализация</Button>
+            <Button style={{marginRight: "15px"}} onClick={() => handleDelete(item._id)}>Изтриване</Button>
         </div>
         {editForm && (
         <Overlay onClick={handleFormCancel}>
@@ -314,25 +312,25 @@ return (
               <Input
                 type="text"
                 value={editDestination}
-                placeholder='Destination'
+                placeholder='Дестинация'
                 onChange={(event) => setDestination(event.target.value)}
               />
               <Input
                 type="text"
                 value={editImage}
-                placeholder='Image'
+                placeholder='Снимка'
                 onChange={(event) => setImage(event.target.value)}
               />
               <Input
                 type="text"
                 value={editStart}
-                placeholder='Start'
+                placeholder='Тръгване от'
                 onChange={(event) => setStart(event.target.value)}
               />
               <Input
                 type="number"
                 value={editPrice}
-                placeholder='Price'
+                placeholder='Цена'
                 onChange={(event) => setPrice(event.target.value)}
               />
               <Input
@@ -356,12 +354,12 @@ return (
               <Input
                 type="number"
                 value={editNumberOfPacks}
-                placeholder='Number of packs'
+                placeholder='Брой пакети'
                 onChange={(event) => setnumberOfPacks(event.target.value)}
               />
-              <FormButton type="submit">Edit</FormButton>
+              <FormButton type="submit">Актуализация</FormButton>
               <FormButton type="button" onClick={handleFormCancel}>
-                Cancel
+                Откажи
               </FormButton>
             </Form>
           </Dialog>
